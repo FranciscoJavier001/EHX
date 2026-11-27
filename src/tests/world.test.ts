@@ -15,7 +15,7 @@ describe('universe', () => {
     expect(world).toEqual(fixture())
     expect(world.devices).not.toEqual(createWorld(720, epoch).devices)
     expect(new Set(world.devices.map(device => device.id)).size).toBe(200)
-    expect([organizations.length, operators.length, satellites.length, eventTypes.length, transmissions.length, documents.length, missions.length, SECRET_IDS.length, arcs.length]).toEqual([12, 20, 8, 30, 100, 40, 15, 20, 4])
+    expect([organizations.length, operators.length, satellites.length, eventTypes.length, transmissions.length, documents.length, missions.length, SECRET_IDS.length, arcs.length]).toEqual([12, 20, 8, 33, 100, 40, 15, 20, 4])
   })
   it('shares event evidence across commands and retains unresolved incidents', () => {
     let world = fixture()

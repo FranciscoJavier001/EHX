@@ -971,3 +971,116 @@ h1 {
 .plus-terminal .terminal-log {
   height: clamp(55px, 11vh, 120px);
 }
+
+.topology-observed { color: #f4f7ff; }
+.topology-nominal { color: #58f991; }
+.topology-linked { color: #74b7ff; }
+.topology-degraded { color: #ff993f; }
+.topology-critical { color: #ff626e; }
+
+.topology g[role="button"] {
+  transition: color .45s ease;
+}
+
+.network-beacon {
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+.global-monitor {
+  margin-top: .8rem;
+}
+
+.monitor-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+}
+
+.monitor-grid section {
+  min-width: 0;
+  padding: .9rem;
+}
+
+.monitor-grid h3 {
+  margin: 0 0 .7rem;
+}
+
+.monitor-traffic {
+  border-left: 1px solid var(--line);
+}
+
+.monitor-news,
+.traffic-regions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.monitor-news .event {
+  align-items: start;
+}
+
+.monitor-news time {
+  white-space: nowrap;
+}
+
+.traffic-total {
+  color: #74b7ff;
+  margin-bottom: .65rem;
+}
+
+.traffic-total strong {
+  color: #f4f7ff;
+  font-size: 1.75em;
+}
+
+.traffic-regions {
+  display: grid;
+  gap: .65rem;
+}
+
+.traffic-region {
+  color: var(--green);
+}
+
+.traffic-region-1 { color: #74b7ff; }
+.traffic-region-2 { color: #ff993f; }
+.traffic-region-3 { color: #f4f7ff; }
+
+.traffic-region > div:first-child {
+  display: flex;
+  gap: .35rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: .85em;
+  margin-bottom: .25rem;
+}
+
+.traffic-track {
+  background: #16261e;
+  height: .3rem;
+}
+
+.traffic-track span {
+  display: block;
+  background: currentColor;
+  height: 100%;
+  transition: width .45s ease;
+}
+
+.still .topology g[role="button"],
+.still .traffic-track span,
+.mode-quiet .topology g[role="button"],
+.mode-quiet .traffic-track span {
+  transition: none;
+}
+
+@media (max-width: 780px) {
+  .monitor-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .monitor-traffic {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}

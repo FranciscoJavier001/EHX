@@ -1,3 +1,5 @@
+import GlobalMonitor from './GlobalMonitor'
+import { topologyStates } from '../engine/telemetry'
 import { useLocale } from './locale'
 import type { World } from '../engine/world'
 import { Panel } from './ui'
@@ -27,10 +29,11 @@ export function Center({ world, now, run }: { world: World; now: number; run: (c
     <div className="stats">{stats.map(([label, value, detail, command], i) => <button onClick={() => run(command)} className={'stat stat-' + i} key={label}><span>{label}</span><strong>{value}</strong><small>{detail}</small></button>)}</div>
     <div className="center-grid">
       <Panel title={t("NETWORK TOPOLOGY")} detail={t("SECTORS 01–04")}><Topology world={world} onNode={id => run('inspect ' + id)}/>
-        <div className="legend"><span><i/> {t("Nominal")}</span><span className="warn"><i/> {t("Degraded")}</span><span className="critical"><i/> {t("Isolated")}</span></div>
+        <div className="legend">{topologyStates.map(state => <span className={"topology-" + state.id} key={state.id}><i/> {t(state.label)}</span>)}</div>
       </Panel>
       <Activity world={world} run={run}/>
     </div>
+    <GlobalMonitor world={world} run={run}/>
     <div className="system-strip"><span>{t("UPTIME")} <b>{uptime}</b></span><span>{t("SESSIONS")} <b>{world.sessions.length}</b></span><span>{t("DISCOVERIES")} <b>{world.secrets.length}</b></span><span>{t("STATUS")} <b>{open ? t("MONITORING") : t("STABLE")}</b></span></div>
   </>
 }

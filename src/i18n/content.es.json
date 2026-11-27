@@ -102,5 +102,8 @@
   "Link rejected by operator": "El operador rechazó el enlace",
   " at ": " en ",
   " logged on the ": " · canal de ",
-  " channel": ""
+  " channel": "",
+  "Relay intrusion confirmed": "Intrusión confirmada en repetidor",
+  "Disruption campaign detected": "Campaña de interrupción detectada",
+  "Unauthorized ledger access": "Acceso no autorizado al registro"
 }

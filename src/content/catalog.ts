@@ -45,6 +45,7 @@ export const eventTypes = [
   'Integrity warning', 'Timing correction', 'Calibration request', 'Checksum discrepancy', 'Channel handover',
   'Attestation due', 'Record verified', 'Spectrum shift', 'Sequence mismatch', 'Quiet interval',
   'Virtual link request', 'Register mismatch', 'Relay check', 'Thermal warning', 'Clock reconciliation',
+  'Relay intrusion confirmed', 'Disruption campaign detected', 'Unauthorized ledger access',
 ]
 export const missions = Array.from({ length: 15 }, (_, index) => {
   const family = index % 4

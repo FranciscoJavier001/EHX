@@ -1,3 +1,4 @@
+import { topologyState, topologyStates } from '../engine/telemetry'
 import { useLocale } from './locale'
 import { useEffect, useId, useRef } from 'react'
 import { satellites } from '../content/catalog'
@@ -25,12 +26,13 @@ export function Topology({ world, onNode, orbital = false }: { world: World; onN
       {topologyLinks.map(([a, b]) => <line key={a + '-' + b} x1={points[a][0]} y1={points[a][1]} x2={points[b][0]} y2={points[b][1]} stroke={a === 4 || a === 6 ? '#2e7952' : '#254636'}/>)}
       {points.map(([x,y], i) => {
         const node = world.devices[topologyDevices[i]]
-        const color = node.state === 'isolated' ? '#f27171' : node.state === 'degraded' ? '#ffbd59' : '#58f991'
-        return <g key={node.id} tabIndex={0} role="button" aria-label={t("Inspect ") + node.id} onClick={() => onNode(node.id)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onNode(node.id) } }}>
-          <title>{node.id} · {t(node.state)}</title>
+        const state = topologyState(world, node)
+        const stateLabel = t(topologyStates.find(item => item.id === state)!.label)
+        return <g key={node.id} tabIndex={0} role="button" className={"topology-" + state} aria-label={t("Inspect ") + node.id + " · " + stateLabel} onClick={() => onNode(node.id)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onNode(node.id) } }}>
+          <title>{node.id} · {stateLabel}</title>
           <circle cx={x} cy={y} r="16" fill="transparent"/>
-          <circle cx={x} cy={y} r={i === 4 || i === 6 ? 11 : 7} fill="#0a1710" stroke={color} strokeOpacity=".5"/>
-          <circle cx={x} cy={y} r={i === 4 || i === 6 ? 4 : 2.7} fill={color} className={i === 4 || i === 6 ? 'beacon' : ''}/>
+          <circle cx={x} cy={y} r={i === 4 || i === 6 ? 11 : 7} fill="#0a1710" stroke="currentColor" strokeOpacity=".5"/>
+          <circle cx={x} cy={y} r={i === 4 || i === 6 ? 4 : 2.7} fill="currentColor" className={state === 'observed' || state === 'linked' ? 'beacon network-beacon' : ''}/>
           {[0,4,6,9,13].includes(i) && <text x={x + 11} y={y - 10} fill="#87a394" fontSize="10">{node.id}</text>}
         </g>
       })}

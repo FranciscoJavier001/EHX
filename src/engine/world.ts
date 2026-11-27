@@ -86,14 +86,16 @@ export function advance(world: World, timestamp: number): World {
   const random = rng(world.seed ^ Math.imul(world.sequence + 1, 2654435761))
   const candidates = world.devices.filter(device => device.state === 'online')
   if (!candidates.length) return world
-  const device = candidates[Math.floor(random() * candidates.length)]
-  const eventIndex = Math.floor(random() * eventTypes.length)
+  const monitored = world.sequence % 3 === 0 ? topologyDevices.map(index => world.devices[index]).filter(node => node.state === 'online') : []
+  const pool = monitored.length ? monitored : candidates
+  const device = pool[Math.floor(random() * pool.length)]
+  const eventIndex = world.sequence === 0 ? eventTypes.indexOf('Unauthorized ledger access') : Math.floor(random() * eventTypes.length)
   const type = eventTypes[eventIndex]
   const template = transmissions[(eventIndex % 10) * 10 + Math.floor(random() * 10)]
   const metadata = { ...template, message: eventIndex < 10 ? template.message : type + ' logged on the ' + template.channel + ' channel' }
   const sequence = world.sequence + 1
-  const open = [0, 1, 3, 5, 6, 11, 15, 18, 22, 25, 26, 28].includes(eventIndex) && world.events.filter(event => event.status === 'open').length < 24
-  const severity = open ? (eventIndex === 15 ? 'critical' : 'warning') : 'info'
+  const open = [0, 1, 3, 5, 6, 11, 15, 18, 22, 25, 26, 28, 30, 31, 32].includes(eventIndex) && world.events.filter(event => event.status === 'open').length < 24
+  const severity = open ? ([15, 30, 31].includes(eventIndex) ? 'critical' : 'warning') : 'info'
   const event: WorldEvent = {
     id: 'EVENT-' + String(sequence + 4).padStart(3, '0'), timestamp, type, severity,
     sourceEntityId: device.id, relatedEntityIds: device.related,

@@ -16,6 +16,10 @@ Offline operation requires an initial successful production load from localhost 
 4. Ask OMEGA for a clue. Use Defense to investigate and restore a device when an incident opens.
 5. Use Settings to switch modes, tune audio and motion, or export/import a JSON save. Change the interface language under Settings → Language.
 
+## Global monitor
+
+The Command Center shows EHX security bulletins and estimated browsing throughput in Gbps across four regions. Open a bulletin to trace its event in the terminal. Topology colors identify recent observations, nominal devices, active links, degraded devices, and critical or isolated devices.
+
 ## Current scope
 
 The world uses procedural device, mission and document templates. OSINT starts with four public dispatches. Switch between English and Español under Settings → Language. The selection is saved on the device. Session logs and saves are bounded. The service worker and lazy-loaded modules ship together in the production build. Save replacement takes effect for the current browser origin. If another tab saves first, export the current session or reload to resume the latest stored universe.

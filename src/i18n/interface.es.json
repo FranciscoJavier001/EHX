@@ -299,5 +299,17 @@
   "command.review": "Lee una auditoría y cobra su recompensa.",
   "command.dispatch": "Continúa el encargo sellado.",
   "command.publish": "Haz pública la evidencia.",
-  "command.seal": "Sella la evidencia y cobra el depósito."
+  "command.seal": "Sella la evidencia y cobra el depósito.",
+  "GLOBAL NETWORK MONITOR": "MONITOR DE RED MUNDIAL",
+  "EHX INTELLIGENCE DESK": "MESA DE INTELIGENCIA EHX",
+  "Cyber incident news": "Noticias de ciberincidentes",
+  "No security bulletins on file.": "Aún no hay boletines de seguridad.",
+  "Global browsing traffic": "Tráfico de navegación mundial",
+  "Americas": "Américas",
+  "Europe": "Europa",
+  "Asia-Pacific": "Asia-Pacífico",
+  "Africa & Middle East": "África y Oriente Medio",
+  "Recent activity": "Actividad reciente",
+  "Active link": "Enlace activo",
+  "Critical / isolated": "Crítico o aislado"
 }
